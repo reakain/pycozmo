@@ -433,10 +433,10 @@ class Client(event.Dispatcher):
         duration = distance/speed
         self.drive_wheels(speed, speed, duration=duration)
 
-    def drive_off_charger_contacts() -> None:
+    def drive_off_charger_contacts(self) -> None:
         self.conn.send(protocol_encoder.EnableStopOnCliff(False))
-        target = util.Pose(100.0, 0.0, 0.0, angle_z=util.Angle(degrees=0.0))
-        self.go_to_pose(target, relative_to_robot=True)
+        target_pose = util.Pose(100.0, 0.0, 0.0, angle_z=util.Angle(degrees=0.0))
+        self.go_to_pose(target_pose, relative_to_robot=True)
         self.conn.send(protocol_encoder.EnableStopOnCliff(True))
 
     def turn_in_place(self, angle_rad: float, speed: Optional[float] = 0.0,

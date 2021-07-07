@@ -83,7 +83,7 @@ class Client(event.Dispatcher):
         self.robot_orientation = robot.RobotOrientation.ON_THREADS
         self.robot_picked_up = False
         self.robot_moving = False
-        self.is_on_charger = True
+        self.is_on_charger = False
         self.is_charging = False
         # Animation state
         self.num_anim_bytes_played = 0
@@ -432,6 +432,12 @@ class Client(event.Dispatcher):
     def drive_straight(self, distance: float, speed: float) -> None:
         duration = distance/speed
         self.drive_wheels(speed, speed, duration=duration)
+
+    def drive_off_charger_contacts() -> None:
+        self.conn.send(protocol_encoder.EnableStopOnCliff(False))
+        target = util.Pose(100.0, 0.0, 0.0, angle_z=util.Angle(degrees=0.0))
+        self.go_to_pose(target, relative_to_robot=True)
+        self.conn.send(protocol_encoder.EnableStopOnCliff(True))
 
     def turn_in_place(self, angle_rad: float, speed: Optional[float] = 0.0,
                       accel: Optional[float] = 0.0, angle_tolerance: Optional[float] = 0.0,

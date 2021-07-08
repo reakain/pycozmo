@@ -78,7 +78,7 @@ class EvtNewRawCameraImage(Event):
 
 
 class EvtRobotMovingChange(Event):
-    pass
+    """ Triggered when the robot has started or stopped moving. """
 
 
 class EvtRobotCarryingBlockChange(Event):
@@ -126,11 +126,11 @@ class EvtRobotAnimatingIdleChange(Event):
 
 
 class EvtRobotOnChargerChange(Event):
-    pass
+    """ Triggered when the robot has moved on or off the charger. """
 
 
 class EvtRobotChargingChange(Event):
-    pass
+    """ Triggered when the robot has started or stopped charging. """
 
 
 class EvtCliffDetectedChange(Event):
@@ -179,7 +179,7 @@ class EvtAudioCompleted(Event):
 
 
 class EvtAnimationCompleted(Event):
-    pass
+    """ Triggered when the robot has completed an animation. """
 
 
 class EvtReactionTrigger(Event):
